@@ -229,3 +229,9 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #00f0ff #05070f;
 }
+
+@media (min-width: 0px) and (max-width: 800px) {
+  .img-grid {
+    display: flex;
+  }
+}
