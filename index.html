@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="website icon" type="jpg" href="logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LynxAI - Futur Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="scanline"></div>
+
+<header class="topbar">
+  <div class="logo">LynxAI // SYSTEM</div>
+  <button id="suggestBtn">💡 Questions</button>
+</header>
+
+<main class="chat-container">
+
+  <!-- messages -->
+  <div class="messages" id="messages">
+
+    <div class="msg bot">
+      <div class="bubble">Signal reçu… origine temporelle incompatible. Veuillez sélectionner une question.</div>
+    </div>
+
+  </div>
+
+  <!-- suggestions (كما هي بدون تغيير) -->
+  <div class="suggestions hidden" id="suggestions">
+    <button class="sugg" data-q="moi">Qui es-tu ?</button>
+    <button class="sugg" data-q="ai">Quel est l'état de l'intelligence artificielle ?</button>
+    <button class="sugg" data-q="robots">Quel est le destin des robots ?</button>
+    <button class="sugg" data-q="voitures">Y aura-t-il des voitures volantes ?</button>
+    <button class="sugg" data-q="médecine">Comment va la médecine ?</button>
+    <button class="sugg" data-q="monde">À quoi ressemblera le monde dans le futur ?</button>
+    <button class="sugg" data-q="villes">À quoi ressemblent vos villes ?</button>
+    <button class="sugg" data-q="espace">Quoi de neuf dans l'espace ?</button>
+    <button class="sugg" data-q="serveau">Peut-on connecter le cerveau aux machines ?</button>
+    <button class="sugg" data-q="vision">Montre-moi des images du futur</button>
+  </div>
+
+</main>
+
+<script src="script.js"></script>
+
+<div id="lightbox" class="lightbox hidden">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+</body>
+</html>
