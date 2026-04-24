@@ -234,4 +234,7 @@ body {
   .img-grid {
     display: flex;
   }
+  .img-grid img {
+  width: 200px;
+  }
 }
