@@ -43,6 +43,7 @@ body {
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0,255,255,0.2);
+  user-select: none;
 }
 
 /* CHAT */
@@ -114,6 +115,7 @@ body {
   cursor: pointer;
   color: #00f7ff;
   transition: 0.2s;
+  user-select: none;
 }
 
 .sugg:hover {
