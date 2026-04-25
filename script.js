@@ -30,6 +30,26 @@ function formatText(text) {
 }
 
 // =======================
+// ⌨️ TYPING EFFECT (إضافة جديدة)
+// =======================
+function typeText(element, text, speed = 15, callback) {
+  element.innerHTML = "";
+  let i = 0;
+
+  const interval = setInterval(() => {
+    element.innerHTML += text.charAt(i);
+    i++;
+
+    messages.scrollTop = messages.scrollHeight;
+
+    if (i >= text.length) {
+      clearInterval(interval);
+      if (callback) callback();
+    }
+  }, speed);
+}
+
+// =======================
 // ➕ إضافة رسالة
 // =======================
 function addMessage(text, type) {
@@ -41,7 +61,7 @@ function addMessage(text, type) {
   messages.appendChild(div);
   messages.scrollTop = messages.scrollHeight;
 
-  return div; // 👈 مهم
+  return div;
 }
 
 // =======================
@@ -102,23 +122,20 @@ async function loadText(file) {
 }
 
 // =======================
-// 💬 تشغيل السؤال (🔥 احترافي)
+// 💬 تشغيل السؤال (مع typing effect)
 // =======================
 async function ask(key, text) {
   addMessage(text, "user");
 
-  // 🧠 رسالة التفكير (واحدة فقط)
   const thinkingMsg = addMessage("Analyse en cours...", "bot");
 
-  // تغيير النص
   setTimeout(() => {
     thinkingMsg.querySelector(".bubble").innerHTML = "Connexion aux données du futur...";
   }, 1200);
 
-  // حذفها ثم عرض النتيجة
   setTimeout(async () => {
 
-    thinkingMsg.remove(); // 👈 حذف الرسالة
+    thinkingMsg.remove();
 
     if (key === "vision") {
       showImages();
@@ -133,7 +150,14 @@ async function ask(key, text) {
     }
 
     const answer = await loadText(file);
-    addMessage(answer, "bot");
+
+    // 🔥 typing effect هنا
+    const msg = addMessage("", "bot");
+    const bubble = msg.querySelector(".bubble");
+
+    typeText(bubble, answer, 10, () => {
+      bubble.innerHTML = formatText(answer);
+    });
 
   }, 2500);
 }
