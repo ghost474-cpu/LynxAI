@@ -30,7 +30,22 @@ function formatText(text) {
 }
 
 // =======================
-// 🖼️ VISION MODE (عرض الصور)
+// ➕ إضافة رسالة
+// =======================
+function addMessage(text, type) {
+  const div = document.createElement("div");
+  div.classList.add("msg", type);
+
+  div.innerHTML = `<div class="bubble">${formatText(text)}</div>`;
+
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+
+  return div; // 👈 مهم
+}
+
+// =======================
+// 🖼️ VISION MODE
 // =======================
 function showImages() {
   const div = document.createElement("div");
@@ -39,7 +54,7 @@ function showImages() {
   div.innerHTML = `
     <div class="bubble image-bubble">
       <h3 class="title">Vision activée...</h3>
-      <p>Analyse du futur en cours...</p>
+      <p>Accès aux archives visuelles...</p>
 
       <div class="img-grid">
         <img src="Vivant.jpg" class="chat-img">
@@ -55,52 +70,26 @@ function showImages() {
 }
 
 // =======================
-// ➕ إضافة رسالة
-// =======================
-function addMessage(text, type) {
-  const div = document.createElement("div");
-  div.classList.add("msg", type);
-
-  div.innerHTML = `<div class="bubble">${formatText(text)}</div>`;
-
-  messages.appendChild(div);
-  messages.scrollTop = messages.scrollHeight;
-}
-
-// =======================
-// 📂 تحديد ملفات TXT
+// 📂 تحديد الملفات
 // =======================
 function getFile(key) {
   switch (key) {
-    case "ai":
-      return "ai.txt";
-    case "robots":
-      return "robot.txt";
-    case "voitures":
-      return "voiture.txt";
-    case "médecine":
-      return "medcine.txt";
-    case "monde":
-      return "monde.txt";
-    case "villes":
-      return "villes.txt";
-    case "espace":
-      return "espace.txt";
-    case "serveau":
-      return "serveau.txt";
-    case "moi":
-      return "moi.txt";
-
-    case "vision":
-      return "VISION_MODE";
-
-    default:
-      return null;
+    case "ai": return "ai.txt";
+    case "robots": return "robot.txt";
+    case "voitures": return "voiture.txt";
+    case "médecine": return "medcine.txt";
+    case "monde": return "monde.txt";
+    case "villes": return "villes.txt";
+    case "espace": return "espace.txt";
+    case "serveau": return "serveau.txt";
+    case "moi": return "moi.txt";
+    case "vision": return "VISION_MODE";
+    default: return null;
   }
 }
 
 // =======================
-// 📥 تحميل TXT
+// 📥 تحميل النص
 // =======================
 async function loadText(file) {
   try {
@@ -113,12 +102,23 @@ async function loadText(file) {
 }
 
 // =======================
-// 💬 تشغيل السؤال
+// 💬 تشغيل السؤال (🔥 احترافي)
 // =======================
 async function ask(key, text) {
   addMessage(text, "user");
 
+  // 🧠 رسالة التفكير (واحدة فقط)
+  const thinkingMsg = addMessage("Analyse en cours...", "bot");
+
+  // تغيير النص
+  setTimeout(() => {
+    thinkingMsg.querySelector(".bubble").innerHTML = "Connexion aux données du futur...";
+  }, 1200);
+
+  // حذفها ثم عرض النتيجة
   setTimeout(async () => {
+
+    thinkingMsg.remove(); // 👈 حذف الرسالة
 
     if (key === "vision") {
       showImages();
@@ -135,11 +135,11 @@ async function ask(key, text) {
     const answer = await loadText(file);
     addMessage(answer, "bot");
 
-  }, 400);
+  }, 2500);
 }
 
 // =======================
-// 💡 اقتراحات
+// 💡 الاقتراحات
 // =======================
 suggestBtn.onclick = () => {
   suggestions.classList.toggle("hidden");
@@ -153,12 +153,11 @@ document.querySelectorAll(".sugg").forEach(btn => {
 });
 
 // =======================
-// 🖼️ LIGHTBOX (تكبير الصور)
+// 🖼️ LIGHTBOX
 // =======================
 let lightbox = document.getElementById("lightbox");
 let lightboxImg = document.getElementById("lightbox-img");
 
-// إنشاء lightbox إذا غير موجود
 if (!lightbox) {
   lightbox = document.createElement("div");
   lightbox.id = "lightbox";
@@ -170,7 +169,7 @@ if (!lightbox) {
   lightboxImg = document.getElementById("lightbox-img");
 }
 
-// 🔓 فتح الصورة
+// فتح الصورة
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("chat-img")) {
     lightbox.classList.remove("hidden");
@@ -178,7 +177,7 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// ❌ إغلاق عند الضغط خارج الصورة
+// إغلاق
 lightbox.addEventListener("click", (e) => {
   if (e.target === lightbox) {
     lightbox.classList.add("hidden");
@@ -186,7 +185,6 @@ lightbox.addEventListener("click", (e) => {
   }
 });
 
-// ❌ إغلاق عند ESC
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     lightbox.classList.add("hidden");
