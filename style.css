@@ -234,7 +234,6 @@ body {
 
 @media (min-width: 0px) and (max-width: 800px) {
   .img-grid {
-    display: flex;
     margin: auto;
     display: block;
   }
