@@ -129,7 +129,7 @@ async function loadText(file) {
 async function ask(key, text) {
   addMessage(text, "user");
 
-  const thinkingMsg = addMessage("Analyse en cours...", "bot");
+  const thinkingMsg = addMessage("Analyse des données en cours…", "bot");
 
   setTimeout(() => {
     thinkingMsg.querySelector(".bubble").innerHTML = "Connexion aux données du futur...";
