@@ -105,6 +105,7 @@ function getFile(key) {
     case "espace": return "espace.txt";
     case "serveau": return "serveau.txt";
     case "moi": return "moi.txt";
+    case "peut": return "peut.txt";
     case "vision": return "VISION_MODE";
     default: return null;
   }
