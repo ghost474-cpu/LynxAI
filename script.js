@@ -77,11 +77,11 @@ function showImages() {
       <p>Accès aux archives visuelles...</p>
 
       <div class="img-grid">
-        <img src="Vivant.jpg" class="chat-img">
-        <img src="paris.png" class="chat-img">
+        <img src="solarpunk.png" class="chat-img">
+        <img src="cyber.webp" class="chat-img">
         <img src="fly.jpg" class="chat-img">
         <img src="cart.png" class="chat-img">
-        <img src="space.webp" class="chat-img">
+        <img src="space2.png" class="chat-img">
         <img src="night city.jpg" class="chat-img">
       </div>
     </div>
