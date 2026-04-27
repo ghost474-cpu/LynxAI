@@ -218,3 +218,28 @@ document.addEventListener("keydown", (e) => {
     lightboxImg.src = "";
   }
 });
+
+window.addEventListener("load", () => {
+  const notif = document.getElementById("notif");
+
+  if (!notif) return;
+
+  notif.classList.remove("hidden");
+
+  setTimeout(() => {
+    notif.classList.add("show");
+  }, 100);
+
+  setTimeout(() => {
+    notif.textContent = "Connexion établie.";
+
+    setTimeout(() => {
+      notif.classList.remove("show");
+
+      setTimeout(() => {
+        notif.remove();
+      }, 400);
+    }, 1000);
+
+  }, 1200);
+});
