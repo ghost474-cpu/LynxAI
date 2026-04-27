@@ -241,3 +241,41 @@ body {
   width: 200px;
   }
 }
+.dot {
+  width: 15px;
+  height: 15px;
+  background: #00ff9c;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ff9c;
+  animation: pulse 3.5s infinite;
+  user-select: none;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.msg .bubble {
+  transition: 0.2s;
+}
+
+.msg .bubble:hover {
+  box-shadow: 0 0 10px #00ff9c55;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
